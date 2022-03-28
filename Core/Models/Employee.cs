@@ -10,6 +10,15 @@ namespace Core.Models
         public DepartmentTypeEnum Department { get; set; }
         public string Salary { get; set; }
 
+        public Employee(int id, string firstName, string lastName, DepartmentTypeEnum department, string salary)
+        {
+            Id = id;
+            FirstName = firstName;
+            LastName = lastName;
+            Department = department;
+            Salary = salary;
+        }
+
         public string FullName
         {
             get

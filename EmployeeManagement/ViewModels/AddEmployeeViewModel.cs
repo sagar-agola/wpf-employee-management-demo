@@ -95,15 +95,7 @@ namespace EmployeeManagement.ViewModels
 
         private void SaveEmployee()
         {
-            Employee employee = new()
-            {
-                FirstName = _firstName,
-                LastName = _lastName,
-                Department = _department,
-                Salary = _salary
-            };
-
-            EmployeeRepository.Add(employee);
+            EmployeeRepository.Add(new Employee(0, _firstName, _lastName, _department, _salary));
             RedirectToListPage();
         }
 

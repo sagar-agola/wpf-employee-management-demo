@@ -10,9 +10,20 @@
 
     <StackPanel>
         <components:AppHeaderComponent />
-        <TextBlock Text="Employee List view works..." />
 
-        <Button Content="Add New Employee" Command="{Binding AddEmployeeCommand}" />
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="0 0 0 10">
+
+            <TextBox Width="200" Text="Start typing to search..." />
+
+            <Button Margin="5 0 0 0"
+                    Content="Add New Employee"
+                    Command="{Binding AddEmployeeCommand}" />
+        </StackPanel>
+
+        <DataGrid ItemsSource="{Binding Employees}">
+        </DataGrid>
 
     </StackPanel>
 </UserControl>
