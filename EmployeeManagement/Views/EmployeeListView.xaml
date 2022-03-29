@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:components="clr-namespace:EmployeeManagement.Components"
-             xmlns:viewmodel="clr-namespace:EmployeeManagement.ViewModels"
+             xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
@@ -22,8 +22,21 @@
                     Command="{Binding AddEmployeeCommand}" />
         </StackPanel>
 
-        <DataGrid ItemsSource="{Binding Employees}">
-        </DataGrid>
+        <syncfusion:SfDataGrid ItemsSource="{Binding Employees}"
+                               AutoGenerateColumns="False">
+            <syncfusion:SfDataGrid.Columns>
+                <syncfusion:GridTextColumn DisplayBinding="{Binding Id}"
+                                           HeaderText="ID"
+                                           Width="50"
+                                           TextAlignment="Center"/>
+                <syncfusion:GridTextColumn DisplayBinding="{Binding FullName}"
+                                           HeaderText="FULL NAME"/>
+                <syncfusion:GridTextColumn DisplayBinding="{Binding Department}"
+                                           HeaderText="DEPARTMENT"/>
+                <syncfusion:GridTextColumn DisplayBinding="{Binding Salary}"
+                                           HeaderText="SALARY"/>
+            </syncfusion:SfDataGrid.Columns>
+        </syncfusion:SfDataGrid>
 
     </StackPanel>
 </UserControl>

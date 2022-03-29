@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Syncfusion.SfGrid.WPF" Version="19.4.0.56" />
+    <PackageReference Include="Syncfusion.Shared.WPF" Version="19.4.0.56" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Business\Business.csproj" />
     <ProjectReference Include="..\Core\Core.csproj" />
   </ItemGroup>
