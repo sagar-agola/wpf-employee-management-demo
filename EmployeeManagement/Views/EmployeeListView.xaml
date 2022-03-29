@@ -8,6 +8,67 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
+    <UserControl.Resources>
+        <Style TargetType="syncfusion:VirtualizingCellsControl" x:Key="alternatingRowStyle">
+            <Setter Property="Background" Value="#F4F4F4" />
+        </Style>
+
+        <Style TargetType="syncfusion:GridCell">
+            <Setter Property="Padding" Value="10 2 10 2" />
+        </Style>
+
+        <Style TargetType="syncfusion:GridHeaderCellControl" x:Key="headerStyle">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Padding" Value="10 3 10 3"/>
+            <Setter Property="Background" Value="#E5E5E5"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+        </Style>
+
+        <Style TargetType="{x:Type TextBox}"
+               x:Key="searchTextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border CornerRadius="4">
+                            <Grid>
+                                <Rectangle StrokeThickness="1" />
+                                <TextBox Margin="1"
+                                     Text="{TemplateBinding Text}"
+                                     BorderThickness="2"
+                                     Background="Transparent"
+                                     VerticalContentAlignment="Center"
+                                     Padding="4"
+                                     x:Name="SearchBox" />
+                                <TextBlock IsHitTestVisible="False"
+                                           Text="Start Typing to Search..."
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left"
+                                           Margin="10,0,0,0"
+                                           FontSize="11"
+                                           Foreground="DarkGray"
+                                           Grid.Column="1">
+                                    <TextBlock.Style>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Text, ElementName=SearchBox}" Value="">
+                                                    <Setter Property="Visibility" Value="Visible"></Setter>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                            <Setter Property="Visibility" Value="Hidden"></Setter>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </UserControl.Resources>
+    
     <StackPanel>
         <components:AppHeaderComponent />
 
@@ -15,7 +76,7 @@
                     HorizontalAlignment="Right"
                     Margin="0 0 0 10">
 
-            <TextBox Width="200" Text="Start typing to search..." />
+            <TextBox Width="200" Style="{StaticResource searchTextBox}" />
 
             <Button Margin="5 0 0 0"
                     Content="Add New Employee"
@@ -23,18 +84,28 @@
         </StackPanel>
 
         <syncfusion:SfDataGrid ItemsSource="{Binding Employees}"
-                               AutoGenerateColumns="False">
+                               AutoGenerateColumns="False"
+                               ColumnSizer="Star"
+                               HeaderStyle="{StaticResource headerStyle}"
+                               HeaderRowHeight="32"
+                               RowHeight="25"
+                               AlternatingRowStyle="{StaticResource alternatingRowStyle}"
+                               GridLinesVisibility="Horizontal"
+                               HeaderLinesVisibility="Horizontal">
+            
             <syncfusion:SfDataGrid.Columns>
                 <syncfusion:GridTextColumn DisplayBinding="{Binding Id}"
                                            HeaderText="ID"
-                                           Width="50"
+                                           ColumnSizer="Auto"
                                            TextAlignment="Center"/>
                 <syncfusion:GridTextColumn DisplayBinding="{Binding FullName}"
                                            HeaderText="FULL NAME"/>
                 <syncfusion:GridTextColumn DisplayBinding="{Binding Department}"
                                            HeaderText="DEPARTMENT"/>
-                <syncfusion:GridTextColumn DisplayBinding="{Binding Salary}"
-                                           HeaderText="SALARY"/>
+                <syncfusion:GridCurrencyColumn DisplayBinding="{Binding Salary}"
+                                               HeaderText="SALARY"
+                                               TextAlignment="Left"/>
+
             </syncfusion:SfDataGrid.Columns>
         </syncfusion:SfDataGrid>
 
