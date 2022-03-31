@@ -3,17 +3,116 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:EmployeeManagement"
         xmlns:viewmodel="clr-namespace:EmployeeManagement.ViewModels"
-        xmlns:views="clr-namespace:EmployeeManagement.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="600"
-        WindowStartupLocation="CenterScreen">
+        Title="MainWindow"
+        Height="450" Width="600"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent">
 
     <Window.DataContext>
         <viewmodel:MainViewModel />
     </Window.DataContext>
 
-    <ContentControl Margin="10 0 10 10"
-                    Content="{Binding CurrentView}"/>
+    <Window.Resources>
+        <Style x:Key="titleBarButton"
+               TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#FFFFFF"/>
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#787c86"/>
+                    <Setter Property="Foreground" Value="#FFFFFF"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="titleBarCloseButton"
+               TargetType="Button"
+               BasedOn="{StaticResource titleBarButton}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="0 10 0 0">
+                            <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#DA1212"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Border BorderBrush="#041562"
+            BorderThickness="1"
+            CornerRadius="10">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!--Title Bar-->
+            <Border Grid.Row="0"
+                    Background="#041562"
+                    CornerRadius="10 10 0 0" MouseDown="Border_MouseDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"
+                               Text="Employee Management System"
+                               FontWeight="Bold"
+                               Margin="10 0 0 0"
+                               VerticalAlignment="Center"
+                               Foreground="#FFFFFF"
+                               FontSize="16"/>
+
+                    <StackPanel Grid.Column="1"
+                                Orientation="Horizontal">
+                        <Button Style="{StaticResource titleBarButton}" Click="MinimizeCommand">
+                            <TextBlock FontWeight="UltraBold">_</TextBlock>
+                        </Button>
+                        <Button Style="{StaticResource titleBarButton}" Click="MaximizeCommand">
+                            <TextBlock FontWeight="Bold">[ ]</TextBlock>
+                        </Button>
+                        <Button Style="{StaticResource titleBarCloseButton}" Click="CloseCommand">
+                            <TextBlock FontWeight="Bold">X</TextBlock>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!--Main Menu-->
+            <Border Grid.Row="1"
+                    Background="#fff"
+                    CornerRadius="0 0 10 10">
+                <ContentControl Margin="10"
+                                Content="{Binding CurrentView}"/>
+            </Border>
+        </Grid>
+    </Border>
 </Window>
