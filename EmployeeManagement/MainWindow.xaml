@@ -16,55 +16,7 @@
         <viewmodel:MainViewModel />
     </Window.DataContext>
 
-    <Window.Resources>
-        <Style x:Key="titleBarButton"
-               TargetType="Button">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="#FFFFFF"/>
-            <Setter Property="Width" Value="40"/>
-            <Setter Property="Height" Value="40"/>
-            <Setter Property="FontSize" Value="18" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}">
-                            <ContentPresenter VerticalAlignment="Center"
-                                              HorizontalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#787c86"/>
-                    <Setter Property="Foreground" Value="#FFFFFF"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style x:Key="titleBarCloseButton"
-               TargetType="Button"
-               BasedOn="{StaticResource titleBarButton}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" CornerRadius="0 10 0 0">
-                            <ContentPresenter VerticalAlignment="Center"
-                                              HorizontalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#DA1212"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-    </Window.Resources>
-
-    <Border BorderBrush="#041562"
+    <Border BorderBrush="{StaticResource PrimaryColorBrush}"
             BorderThickness="1"
             CornerRadius="10">
         <Grid>
@@ -75,7 +27,7 @@
 
             <!--Title Bar-->
             <Border Grid.Row="0"
-                    Background="#041562"
+                    Background="{StaticResource PrimaryColorBrush}"
                     CornerRadius="10 10 0 0" MouseDown="Border_MouseDown">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -88,7 +40,7 @@
                                FontWeight="Bold"
                                Margin="10 0 0 0"
                                VerticalAlignment="Center"
-                               Foreground="#FFFFFF"
+                               Foreground="{StaticResource WhiteColorBrush}"
                                FontSize="16"/>
 
                     <StackPanel Grid.Column="1"
@@ -108,7 +60,7 @@
 
             <!--Main Menu-->
             <Border Grid.Row="1"
-                    Background="#fff"
+                    Background="{StaticResource WhiteColorBrush}"
                     CornerRadius="0 0 10 10">
                 <ContentControl Margin="10"
                                 Content="{Binding CurrentView}"/>
