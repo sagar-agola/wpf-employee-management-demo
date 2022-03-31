@@ -11,6 +11,7 @@
                 <ResourceDictionary Source="Styles/Color.xaml" />
                 <ResourceDictionary Source="Styles/Base.xaml" />
                 <ResourceDictionary Source="Styles/Button.xaml" />
+                <ResourceDictionary Source="Styles/Syncfusion.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type viewModel:AddEmployeeViewModel}">

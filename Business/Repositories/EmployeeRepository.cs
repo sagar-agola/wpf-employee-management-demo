@@ -12,7 +12,7 @@ namespace Business.Repositories
             new Employee(1, "Dharmik", "Ginoya", DepartmentTypeEnum.TeamLeader, "75000"),
             new Employee(1, "Harshil", "Gohel", DepartmentTypeEnum.Developer, "45000"),
             new Employee(1, "Madhav", "Nasit", DepartmentTypeEnum.Developer, "45000"),
-            new Employee(1, "Jay", "Gadhavi", DepartmentTypeEnum.QA, "-")
+            new Employee(1, "Jay", "Gadhavi", DepartmentTypeEnum.QA, "60000")
         };
 
         public static void Add(Employee employee)

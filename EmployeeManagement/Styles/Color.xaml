@@ -6,5 +6,11 @@
 
     <Color x:Key="WhiteColor">#FFFFFF</Color>
     <SolidColorBrush x:Key="WhiteColorBrush" Color="{StaticResource WhiteColor}" />
+
+    <Color x:Key="PureBlack">#222233</Color>
+    <SolidColorBrush x:Key="PureBlackColorBrush" Color="{StaticResource PureBlack}" />
     
+    <Color x:Key="DarkBlack">#444455</Color>
+    <SolidColorBrush x:Key="DarkBlackColorBrush" Color="{StaticResource DarkBlack}" />
+
 </ResourceDictionary>
